@@ -1,0 +1,35 @@
+<div style="display: flex;flex-direction: row; justify-content: space-between;">
+<div class="book-display" style="
+    display: grid;
+    width: 100%;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(4,250px) ;
+    grid-auto-rows: minmax(300px, 300px);
+    grid-auto-columns: minmax(300px, 300px);
+    grid-gap: 10px;
+    justify-items: center;
+    margin:20px 0px 20px 2.5vw;
+    ">
+        <!-- <mat-grid-list cols="4" rowHeight="400px"> -->
+            <div *ngFor="let libro of libros" class="flex-col-c">
+                <!-- <mat-grid-tile> -->
+                <mat-card (click)="abrir(libro)" class="black-box-shadow book-card">
+                    <mat-card-header> <img mat-card-lg-image [src]="libro.img_url" class="card-title-img black-box-shadow" alt="" /></mat-card-header>
+                    <mat-card-title>{{libro.title}}</mat-card-title>
+                    <mat-card-content></mat-card-content>
+                    <mat-divider inset></mat-divider>
+                    <mat-card-footer>
+                    {{libro.author}}
+                    </mat-card-footer>
+                </mat-card>
+            <!-- </mat-grid-tile> -->
+            </div>
+    <!-- </mat-grid-list> -->
+</div>
+    <div class="menu-busqueda">
+        <mat-card style="display: flex;flex-direction: column;">
+            <input matInput placeholder="Autor">
+            <input matInput placeholder="Categoria">
+        </mat-card>
+    </div>
+    </div>
