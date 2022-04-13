@@ -1,24 +1,79 @@
 
-    <div class="flex-row" >
-                    
-        <div class="left-col">
-            <img [src]="libro.img_url" class="card-title-img" style="max-height: 75vh;" [alt]=""/>
-        </div>
-        <div class="flex-col" style="width: 100%; height: 60vh; max-height: 65vh;">
-            <h6 style="font-size: xx-large;">{{libro.title}}</h6>
-            <h4 style="font-size: large;">{{libro.author}}</h4>
-            <hr>
-            <p style="margin-left: 20px;">{{libro.description}}</p> 
-            
-            <p class="flex-c-m" style="align-content: flex-end; flex-direction: column;">
-                Edición: {{libro.edition}} | Cantidad en stock: {{libro.book_quantity}} | Páginas: {{libro.page_nums}} | Año de publicación: {{libro.publish_date}}
-                <br>
-                <button mat-stroked-button color="primary"><a>Pedir este libro prestado.</a></button>
-            </p>
-                
+<div *ngIf="libro;" else noBook>
+<div class="flex-row">
 
-            
-
-
-        </div>
+    <div class="left-col">
+        <img [src]="libro.img_url" class="card-title-img" style="max-height: 75vh; max-width:50vw;" [alt]="" />
     </div>
+    <div class="flex-col" style="width: 100%; height: 60vh; max-height: 65vh;">
+        <h6 style="font-size: xx-large;">{{libro.title}}</h6>
+        <h4 style="font-size: large;">{{libro.author}}</h4>
+        <hr>
+        <div *ngIf="!solicitando;">
+            <p style="margin-left: 20px;">{{libro.description}}</p>
+
+            <p class="flex-c-m" style="align-content: flex-end; flex-direction: column;">
+                Edición: {{libro.edition}} | Cantidad en stock: {{libro.book_quantity}} | Páginas: {{libro.page_nums}} |
+                Año de publicación: {{libro.publish_date}}
+                <br>
+                <button mat-stroked-button color="primary" (click)="solicitando = true"><a>Pedir este libro
+                        prestado.</a></button>
+            </p>
+        </div>
+        
+            <div *ngIf="solicitando; else elseBlock">
+                <form class="login100-form" autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="crearPrestamo()">
+
+                    <div class="flex-row">
+                        <div class="wrap-input100 m-b-23">
+                            <span class="label-input100">Cantidad de libros (max 3)</span>
+                            <input class="input100" type="number" max="3" formControlName="book_quantity"
+                                placeholder="Ingrese la cantidad de libros (max 3)">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <mat-form-field class="example-full-width" appearance="fill">
+
+                            <mat-label>Fecha limite (max 3 semanas)</mat-label>
+                            <input matInput [min]="minDate" [max]="maxDate"  [matDatepicker]="picker" formControlName="final_date">
+                            <mat-hint>MM/DD/AAAA</mat-hint>
+                            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+
+
+                        <button class="login100-form-btn" type="submit" [disabled]="miFormulario.invalid">
+                            <a>
+                                Confirmar
+                            </a>
+                        </button>
+
+
+
+
+
+
+                        <button class="login100-form-btn" (click)="cancelar()">
+                            <a>
+                                Cancelar
+                            </a>
+                        </button>
+                </form>
+            </div>
+        
+        <ng-template #elseBlock>
+
+        </ng-template>
+
+
+
+    </div>
+</div>
+</div>
+
+<ng-template #noBook>
+    <div class="flex-c" style="margin: 25vw;">
+        <mat-label>Este libro no existe actualmente :(</mat-label>
+      </div>
+</ng-template>

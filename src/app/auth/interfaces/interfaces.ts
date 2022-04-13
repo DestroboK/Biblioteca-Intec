@@ -25,3 +25,13 @@ author?: string,
 page_nums?:string,
 book_quantity?: string
 }
+
+export interface Prestamo{
+    _id:string,
+book_quantity?: string,
+status?: string,
+user_id: string
+book_id: string
+emission_date: Date,
+final_date: Date
+}

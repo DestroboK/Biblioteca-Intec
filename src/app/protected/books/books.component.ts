@@ -11,6 +11,7 @@ import { Libro } from '../../auth/interfaces/interfaces';
   ]
 })
 export class BooksComponent implements OnInit {
+  librosFiltrados: Libro[] =[];
 
   ngOnInit(): void {
     this.authService.obtenerLibros();
@@ -33,5 +34,18 @@ export class BooksComponent implements OnInit {
     this.router.navigate(['dashboard/details/', {_id: libro._id}])
     console.log("hiciste click en un libro" + libro._id)
   }
+  buscar(){
+    var inputValue = (<HTMLInputElement>document.getElementById('searchBar')).value;
+    console.log(inputValue);
 
+    this.librosFiltrados = this.libros.filter(libro=> libro.title.toLowerCase().includes(inputValue.toLowerCase()) ||  libro.author!.toLowerCase().includes(inputValue.toLowerCase()) );
+  
+    if(inputValue == ''){
+      this.authService.obtenerLibros();
+    }
+    else{
+      
+    this.authService.filtrarLibros(this.librosFiltrados);
+    }
+  }
 }

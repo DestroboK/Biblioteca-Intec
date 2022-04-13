@@ -1,4 +1,10 @@
-<div style="display: flex;flex-direction: row; justify-content: space-between;">
+<div style="background: rgb(63,94,251);
+background: radial-gradient(circle, rgba(63,94,251,0) 0%, rgba(0,0,0,0.06206232492997199) 100%);">
+    <span class="login100-form-title p-b-49">
+        Nuestro Catálogo
+    </span>
+<div style="display: flex;flex-direction: row; justify-content: space-between; ">
+
 <div class="book-display" style="
     display: grid;
     width: 100%;
@@ -27,9 +33,35 @@
     <!-- </mat-grid-list> -->
 </div>
     <div class="menu-busqueda">
-        <mat-card style="display: flex;flex-direction: column;">
-            <input matInput placeholder="Autor">
-            <input matInput placeholder="Categoria">
+        <mat-card style="display: flex;flex-direction: column; margin-top: 20px;">
+            <p style="font-size: large; margin-bottom: 10px; text-align: center;">Buscar</p>
+            <mat-divider inset=""></mat-divider>
+<div class="wrap-input100" style="width:fit-content; margin-right: 1vw; margin-top: 0px;">
+    <span class="label-input100" ></span>
+    <input class="input100"
+           type="string"
+           id="searchBar"
+           (input)="buscar()"
+           placeholder="Titulo o Autor">
+    <span class="focus-input100"></span>
+</div>
+
         </mat-card>
+
+        <mat-card style="display: flex;flex-direction: column; margin-top: 20px;">
+            <p style="font-size: large; margin-bottom: 10px; text-align: center;">Nuestras redes</p>
+            <mat-divider inset=""></mat-divider>
+ <div class="flex-col" style="margin: 10px" >
+    <div class="flex-row">
+<img style="border-radius: 50%; max-height:30px; max-width: 30px; margin-top: 10px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/800px-Facebook_logo_%28square%29.png"> <a href="https://es-la.facebook.com/intecrd/" style="align-self: center; font-size: larger; margin-left: 30px; margin-top: 10px;" target="_blank">Facebook</a>
+</div>
+<div style="width: 100%">
+<img style="border-radius: 50%; max-height:30px; max-width: 30px;  margin-top: 10px;" src="https://play-lh.googleusercontent.com/J8k5q78xv4R8Smi4vOE6iUphLvOz0efC-0lzoyGfd0KRUlAv4ekuCtlss6KBN-tMvEw"><a href="https://twitter.com/intecrd?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" style="align-self: center; font-size: larger; margin-left: 30px; margin-top: 5px;" target="_blank">Twitter</a>
+</div>
+<div style="width: 100%">
+<img style="border-radius: 50%; max-height:30px; max-width: 30px;  margin-top: 10px;" src="https://cdn-icons-png.flaticon.com/512/187/187209.png"><a href="https://www.youtube.com/channel/UCWAjpsuhIAtKvkWmx8OZhaQ" style="align-self: center; font-size: larger; margin-left: 30px; margin-top: 5px;" target="_blank">Youtube</a>
+</div> </div>
+                    </mat-card>
     </div>
     </div>
+</div>
